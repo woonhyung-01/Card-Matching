@@ -17,15 +17,15 @@ for (int i = 0; i < 16; i++)
 {
     card[i / 4, i % 4] = (i / 2) + 1; 
 }
-int count = 0;
-int success = 0;
+bool[,] isOpened = new bool[4, 4];
+
 
 
 
 Shuffle(card);
 for (int col = 0; col < 4; col++)
 {
-    Console.Write($"{col + 1,3}열");
+    Console.Write($"{col + 1,2}열");
 }
 Console.WriteLine();
 for (int row = 0; row < 4; row++)
@@ -33,7 +33,14 @@ for (int row = 0; row < 4; row++)
     Console.Write($"{row + 1,2}행");
     for (int col = 0; col < 4; col++)
     {
-        Console.Write($" {card[row, col],3}");
+        if (isOpened[row, col])
+        {
+            Console.Write($" {card[row, col],3}");
+        }
+        else
+        {
+            Console.Write($" {"** ",3}");
+        }
     }
     Console.WriteLine();
 }
